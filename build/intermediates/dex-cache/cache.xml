@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\TestProject\EncryptFile\rwlibrary\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d6e25d5870dbca0df71c533800df75ed3fe16aed">
+        <dex dex="D:\TestProject\EncryptFile\app\build\intermediates\pre-dexed\debug\classes_6d007930099e885fdf022ceca212349ce031c202.jar" />
+    </item>
+
+</items>
