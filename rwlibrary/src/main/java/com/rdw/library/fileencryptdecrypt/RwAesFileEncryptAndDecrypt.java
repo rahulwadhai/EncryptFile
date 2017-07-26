@@ -18,7 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /*** Created by RAHUL D. WADHAI on 7/25/2017 ***/
 
-public class AesFileEncryptAndDecrypt {
+public class RwAesFileEncryptAndDecrypt {
 
     /**
      * Here is Both function for encrypt and decrypt file in Sdcard folder. we
