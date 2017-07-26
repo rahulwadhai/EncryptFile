@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.rdw.library.fileencryptdecrypt.AesFileEncryptAndDecrypt;
+import com.rdw.library.fileencryptdecrypt.RwAesFileEncryptAndDecrypt;
 import com.rdw.library.utils.RwUtils;
 
 import java.io.File;
@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
             File inFile = new File("storage/emulated/0/Download/CABW180SQJP01_T.mp4");//Original file
             File outFile = new File("storage/emulated/0/Download/enc_CABW180SQJP01_T.mp4");// encode file
             try {
-                AesFileEncryptAndDecrypt.encrypt(new FileInputStream(inFile),
+                RwAesFileEncryptAndDecrypt.encrypt(new FileInputStream(inFile),
                         new FileOutputStream(outFile),
-                        AesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
+                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
                         ConstantString.ALGORITHM,ConstantString.TRANSFORMATION);
             } catch (IOException | GeneralSecurityException e) {
                 e.printStackTrace();
@@ -163,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
             File outFile = new File("storage/emulated/0/Download/enc_CABW180SQJP01_T.mp4");//encode file
             File outFile_dec = new File("storage/emulated/0/Download/dec_CABW180SQJP01_T.mp4");//decode file
             try {
-                AesFileEncryptAndDecrypt.decrypt(new FileInputStream(outFile),
+                RwAesFileEncryptAndDecrypt.decrypt(new FileInputStream(outFile),
                         new FileOutputStream(outFile_dec),
-                        AesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
+                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
                         ConstantString.ALGORITHM,ConstantString.TRANSFORMATION);
             } catch (IOException |GeneralSecurityException e) {
                 e.printStackTrace();
