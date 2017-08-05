@@ -1,7 +1,6 @@
 package com.rw.encryptfile;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rdw.library.fileencryptdecrypt.RwAesFileEncryptAndDecrypt;
+import com.rdw.library.progressdialog.RwProgressDialog;
 import com.rdw.library.utils.RwUtils;
 
 import java.io.File;
@@ -105,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class EncryptFileAsync extends AsyncTask<String,String,String>{
-        ProgressDialog progressDialog;
+        RwProgressDialog rwProgressDialog;
         String response = "Success";
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Please wait encrypting file...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            rwProgressDialog = new RwProgressDialog(MainActivity.this,
+                    R.string.encrypting, R.color.colorWhite, R.color.colorPrimary);
+            rwProgressDialog.setCancelable(false);
+            rwProgressDialog.show();
         }
 
         @Override
@@ -124,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 RwAesFileEncryptAndDecrypt.encrypt(new FileInputStream(inFile),
                         new FileOutputStream(outFile),
-                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
-                        ConstantString.ALGORITHM,ConstantString.TRANSFORMATION);
+                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY, ConstantString.ALGORITHM),
+                        ConstantString.ALGORITHM, ConstantString.TRANSFORMATION);
             } catch (IOException | GeneralSecurityException e) {
                 e.printStackTrace();
                 response = e.getMessage();
@@ -139,22 +139,22 @@ public class MainActivity extends AppCompatActivity {
             if (response.equals("Success")){
                 RwUtils.messageLong(MainActivity.this,"File encrypted successfully");
             }
-            if (progressDialog.isShowing()){
-                progressDialog.dismiss();
+            if (rwProgressDialog.isShowing()){
+                rwProgressDialog.dismiss();
             }
         }
     }
 
     public class DecryptFileAsync extends AsyncTask<String,String,String>{
-        ProgressDialog progressDialog;
+        RwProgressDialog rwProgressDialog;
         String response = "Success";
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Please wait decrypting file...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            rwProgressDialog = new RwProgressDialog(MainActivity.this,
+                    R.string.decrypting, R.color.colorWhite, R.color.colorPrimary);
+            rwProgressDialog.setCancelable(false);
+            rwProgressDialog.show();
         }
 
         @Override
@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 RwAesFileEncryptAndDecrypt.decrypt(new FileInputStream(outFile),
                         new FileOutputStream(outFile_dec),
-                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY,ConstantString.ALGORITHM),
-                        ConstantString.ALGORITHM,ConstantString.TRANSFORMATION);
+                        RwAesFileEncryptAndDecrypt.secretKey(ConstantString.KEY, ConstantString.ALGORITHM),
+                        ConstantString.ALGORITHM, ConstantString.TRANSFORMATION);
             } catch (IOException |GeneralSecurityException e) {
                 e.printStackTrace();
                 response = e.getMessage();
@@ -179,8 +179,8 @@ public class MainActivity extends AppCompatActivity {
             if (response.equals("Success")){
                 RwUtils.messageLong(MainActivity.this,"File decrypted successfully");
             }
-            if (progressDialog.isShowing()){
-                progressDialog.dismiss();
+            if (rwProgressDialog.isShowing()){
+                rwProgressDialog.dismiss();
             }
         }
     }
