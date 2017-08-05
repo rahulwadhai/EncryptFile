@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">EncryptFile</string>
     <string name="action_settings">Settings</string>
+    <string name="encrypting">Please wait encrypting file&#8230;</string>
+    <string name="decrypting">Please wait decrypting file&#8230;</string>
 </resources>
